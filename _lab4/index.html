@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Converter</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <fieldset>
-        <legend><H3 id= "title">Currency Converter</H3></legend>
-    <label for="_color_value"> Choose text color:</label><br>
-    <input oninput="_colorize1()" type="radio" name="_color_value1" value="red" >red  <br>
-    <input oninput="_colorize2()" type="radio" name="_color_value2" value="blue">blue <br>
-    <input oninput="_colorize3()" type="radio" name="_color_value3" value="green">green <br>
+        <legend>
+            <H3 id="title">Currency Converter</H3>
+        </legend>
+        <div class="color">
+            <label for="_color_value"> Choose text color:</label><br>
+            <input oninput="_colorize()" type="radio" name="_color_value" value="red">red <br>
+            <input oninput="_colorize()" type="radio" name="_color_value" value="blue">blue <br>
+            <input oninput="_colorize()" type="radio" name="_color_value" value="green">green <br>
+        </div>
+        <div class="currency">
+            <label for="_currency_value">Please Enter amount in JD</label>
+            <br>
+            <input value="" type="number" name="" id="jod_input" oninput="_convert()">
+            <br>
 
-    <label for="_currency_value">Please Enter amount in JD</label>
-    <br>
-    <input value ="" type="number" name="" id="jod_input" oninput="_convert()">
-    <br>
+            <label for="Dollar">Dollar</label>
+            <br>
+            <input value="" type="number" name="dollar_input" id="dollar_input">
+            <br>
 
-    <label for="Dollar">Dollar</label>
-    <br>
-    <input value="" type="number" name="dollar_input" id="dollar_input">
-    <br>
-
-    <label for="Euro">Euro</label>
-    <br>
-    <input value="" type="number" name="euro_input" id="euro_input">
-    <br>
-    <label for="saudi_riyal">Saudi Riyal</label>
-    <br>
-    <input value="" type="number" name="saudi_input" id="saudi_input">
-    <br>
-    <label for="Yen">Yen</label>
-    <br>
-    <input value="" type="number" name="yen_input" id="yen_input">
-    <br>
-    <label for="Pound">Pound</label>
-    <br>
-    <input value="" type="number" name="pound_input" id="pound_input">
-</fieldset>
+            <label for="Euro">Euro</label>
+            <br>
+            <input value="" type="number" name="euro_input" id="euro_input">
+            <br>
+            <label for="saudi_riyal">Saudi Riyal</label>
+            <br>
+            <input value="" type="number" name="saudi_input" id="saudi_input">
+            <br>
+            <label for="Yen">Yen</label>
+            <br>
+            <input value="" type="number" name="yen_input" id="yen_input">
+            <br>
+            <label for="Pound">Pound</label>
+            <br>
+            <input value="" type="number" name="pound_input" id="pound_input">
+        </div>
+    </fieldset>
 
 
     <script src="script.js"></script>
 </body>
+
 </html>

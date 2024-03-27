@@ -1,25 +1,24 @@
 
 
-function _colorize1() {
+function _colorize() {
     let title = document.getElementById("title");
-   
-    title.style.color = "red";
-
-}
-
-function _colorize2() {
-    let title = document.getElementById("title");
-   
-    title.style.color = "green";
-
-}
-
-function _colorize3() {
-    let title = document.getElementById("title");
+  let radio = document.querySelector("input[name='_color_value']:checked").value;
     
-    title.style.color = "blue";
+    switch (radio) {
+      case "red":
+        title.style.color = " rgb(238, 68, 68)";
+        break;
+      case "green":
+        title.style.color = " rgb(96, 238, 68)";
+        break;
+
+      default:
+        title.style.color = "rgb(68, 179, 238)";
+        break;
+    }
 
 }
+
 
 function _convert(){
     let jod = document.getElementById("jod_input").value;
