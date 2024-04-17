@@ -1,0 +1,82 @@
+body {
+    background-color: #14373a;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(9, 24, 32);
+    border-radius: 20px;
+    color: #fff;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #14373a;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button-group {
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-group button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    margin-top: 20px;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+legend {
+    flex: auto;
+    justify-content: center;
+    padding: 50px 50px 30px 30px;
+}
+
+fieldset {
+    background-color: rgb(19, 50, 67);
+
+}
+
+label {
+    background-color: transparent;
+}
+
+input {
+    border-width: 1px;
+    border-color: #474747;
+}
