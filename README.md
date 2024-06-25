@@ -10,6 +10,14 @@
     - [DTD (Document Type Definition)](#dtd-document-type-definition)
         - [**Elements**](#elements)
     - [Example Snippet (`.xml` \& its `.dtd`)](#example-snippet-xml--its-dtd)
+  - [JSP | Java Server Pages](#jsp--java-server-pages)
+    - [How it Works?](#how-it-works)
+    - [Expression Tag `<%= ... %>`](#expression-tag---)
+    - [Scriptlet Tag `<% ... %>`](#scriptlet-tag---)
+    - [Declaration Tag `<%! ... %>`](#declaration-tag---)
+  - [JSP Predefined Variables](#jsp-predefined-variables)
+  - [JSP Form Methods](#jsp-form-methods)
+    - [Example](#example)
 
 ---
 
@@ -135,6 +143,7 @@ index.xml
 ```
 
 note.dtd
+
 ```dtd
 <!DOCTYPE note
 [
@@ -150,6 +159,128 @@ note.dtd
 
 > [!IMPORTANT]
 > There Are Other Boring details left that are long to write, read them using the link below \\/
+
 - [XML Lect 2](./lects/CS355%20Lecture%2014%20-%20XML%202.pdf)
 
+---
+
+## JSP | Java Server Pages
+
+**JSP**: Java Server Pages, is a technology used to create dynamic web pages using Java.
+
+### How it Works?
+
+When a client requests a JSP page --> the server compiles the JSP into a servlet --> processes the servlet --> returns the HTML response to the client.
+
+JSP allows embedding Java code directly into HTML using special tags, an example is below \\/
+
+> "Basically Java Code Embedded inside HTML"
+
+```jsp
+<html>
+  <body>
+    <h1>Hello, <%= request.getParameter("name") %>!</h1>
+  </body>
+</html>
+```
+
+### Expression Tag `<%= ... %>`
+
+- Outputs the result of Java expressions to the client.
+- Example:
+  ```jsp
+  <h1>Hello, <%= request.getParameter("name") %>!</h1>
+  ```
+
+### Scriptlet Tag `<% ... %>`
+
+- Contains Java code to be executed.
+- Example:
+  ```jsp
+  <%
+    String user = request.getParameter("name");
+    if (user == null) {
+      user = "Guest";
+    }
+  %>
+  ```
+
+### Declaration Tag `<%! ... %>`
+
+- Defines methods or variables with scope throughout the JSP page.
+- Example:
+  ```jsp
+  <%!
+    private int counter = 0;
+    public int getCounter() {
+      return counter++;
+    }
+  %>
+  ```
+
+## JSP Predefined Variables
+
+- **`request`**: The `HttpServletRequest` object.
+- **`response`**: The `HttpServletResponse` object.
+- **`out`**: The `JspWriter` object for output.
+- **`session`**: The `HttpSession` object.
+- **`application`**: The `ServletContext` object.
+- **`config`**: The `ServletConfig` object.
+- **`pageContext`**: Provides access to various objects including request, response, session, etc.
+- **`page`**: Refers to the current JSP page.
+
+## JSP Form Methods
+
+| Method                                    | Description                                                                              |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request.getParameter("name")`            | Retrieves the value of a form parameter as a string.                                     |
+| `request.getParameterValues("name")`      | Retrieves the values of a form parameter as an array of strings (useful for checkboxes). |
+| `request.getParameterNames()`             | Returns an enumeration of all parameter names in the request.                            |
+| `request.getAttribute("attrName")`        | Gets the value of an attribute from the request scope.                                   |
+| `request.setAttribute("attrName", value)` | Sets an attribute in the request scope.                                                  |
+| `request.getSession()`                    | Returns the current session associated with the request.                                 |
+
+### Example
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSP Example</title>
+</head>
+<body>
+
+<%!
+    // Declaration tag: Define a method to get the greeting message
+    private String getGreeting(String name) {
+        return "Hello, " + name + "!";
+    }
+%>
+
+<%
+    // Scriptlet tag: Process the form submission
+    String name = request.getParameter("name");
+    if (name == null || name.isEmpty()) {
+        name = "Guest";
+    }
+    // Increment the counter
+    int visitCount = (session.getAttribute("visitCount") == null) ? 1 : (int) session.getAttribute("visitCount") + 1;
+    session.setAttribute("visitCount", visitCount);
+%>
+
+<h1><%= getGreeting(name) %></h1> <!-- Expression tag: Output the greeting message -->
+
+<p>You have visited this page <%= visitCount %> times.</p>
+
+<form method="post" action="example.jsp">
+    <label for="name">Enter your name:</label>
+    <input type="text" id="name" name="name">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
+```
 ---
