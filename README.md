@@ -18,6 +18,13 @@
   - [JSP Predefined Variables](#jsp-predefined-variables)
   - [JSP Form Methods](#jsp-form-methods)
     - [Example](#example)
+  - [Java Servlets Cheatsheet](#java-servlets-cheatsheet)
+    - [Hello World in Servlets](#hello-world-in-servlets)
+    - [Database Connection Example](#database-connection-example)
+  - [Handling HTML Forms](#handling-html-forms)
+    - [HTML Form Example](#html-form-example)
+    - [Servlet to Handle Form Submission](#servlet-to-handle-form-submission)
+    - [Deployment Descriptor for Form Handling Servlet (`web.xml`)](#deployment-descriptor-for-form-handling-servlet-webxml)
 
 ---
 
@@ -283,4 +290,126 @@ JSP allows embedding Java code directly into HTML using special tags, an example
 </body>
 </html>
 ```
+
 ---
+
+Sure! Here's a concise and comprehensive cheatsheet for Java Servlets:
+
+## Java Servlets Cheatsheet
+
+> [!NOTE]
+> Servlets simply are HTML embedded inside Java... ~~skip 200+ slides~~
+
+### Hello World in Servlets
+
+```java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+public class HelloWorld implements Servlet {
+    private static final long serialVersionUID = 1 L;
+    public HelloWorld() //no-argument constructor.
+    {}
+    ServletConfig config = null;
+    @Override
+    public void init(ServletConfig config) throws
+    ServletException {
+        this.config = config;
+        System.out.println("Config Initialization goes here.");
+    }
+    @Override
+    public void destroy() {
+        System.out.println("Clean-up process goes here.");
+    }
+    @Override
+    public ServletConfig getServletConfig() {
+        return config;
+    }
+    @Override
+    public String getServletInfo() {
+        return "Hello World!";
+    }
+
+    @Override
+    public void service(ServletRequest request, ServletResponse response)
+    throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>Hello World example using servlet interface.</h1>");
+        out.close();
+    }
+}
+```
+
+### Database Connection Example
+
+- **Servlet to Connect to MySQL**
+
+  ```java
+  import java.sql.Connection;
+  import java.sql.DriverManager;
+  import java.sql.SQLException;
+  import javax.servlet.ServletException;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
+
+  public class DatabaseServlet extends HttpServlet {
+      private static final String JDBC_URL = "jdbc:mysql://localhost:3306/mydatabase";
+      private static final String JDBC_USER = "root";
+      private static final String JDBC_PASSWORD = "password";
+
+      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+          try {
+              Class.forName("com.mysql.cj.jdbc.Driver");
+              Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+              // Use the connection to interact with the database
+              connection.close();
+              response.getWriter().println("Database connection successful!");
+          } catch (ClassNotFoundException | SQLException e) {
+              e.printStackTrace();
+              response.getWriter().println("Database connection failed!");
+          }
+      }
+  }
+  ```
+
+## Handling HTML Forms
+
+### HTML Form Example
+
+- **Form in HTML**
+  ```html
+  <form action="formHandler" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" />
+    <input type="submit" value="Submit" />
+  </form>
+  ```
+
+### Servlet to Handle Form Submission
+
+- **Form Handling Servlet**
+
+  ```java
+  import javax.servlet.ServletException;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
+  import java.io.IOException;
+
+  public class FormHandlerServlet extends HttpServlet {
+      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+          String username = request.getParameter("username");
+          response.setContentType("text/html");
+          response.getWriter().println("<h1>Hello, " + username + "!</h1>");
+      }
+  }
+  ```
+
+### Deployment Descriptor for Form Handling Servlet (`web.xml`)
