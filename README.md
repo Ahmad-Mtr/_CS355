@@ -33,6 +33,7 @@
   - [.NET Development Models](#net-development-models)
   - [Example: Hello World in C#](#example-hello-world-in-c)
   - [Further Info](#further-info)
+- [Web  Services](#web--services)
 - [Essay Questions for the Exam \& Answers (AI-generated)](#essay-questions-for-the-exam--answers-ai-generated)
   - [XML Essay Questions and Solutions](#xml-essay-questions-and-solutions)
   - [.NET (mostly from ch.2 + 3) Essay Questions and Solutions](#net-mostly-from-ch2--3-essay-questions-and-solutions)
@@ -497,6 +498,15 @@ I've didn't have time to include many other Course-related info, so refer to the
 - [.NET Lect 2](./lects/CS355%20Lecture%2022%20-%20Dot%20Net%203.pdf)
 - [.NET Lect 3](./lects/CS355%20Lecture%2021%20-%20Dot%20Net%204.pdf)
 - [.NET Lect 4](./lects/CS355%20Lecture%2024%20-%20Dot%20Net%205.pdf)
+
+
+---
+
+## Web  Services
+Again, read the following:
+- [Web Services lect 1](./lects/CS355%20Lecture%2015%20-%20Web%20Service%201.pdf) 
+- [Web Services lect 2](./lects/CS355%20Lecture%2015%20-%20Web%20Service%202.pdf) 
+- [Services Summary](./lects/xml%20wsdl%20soap%20uddi%20web%20services%20summery.pdf)
 
 ---
 
